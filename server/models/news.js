@@ -1,7 +1,9 @@
+const _ = require('lodash');
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const {Topic} = require('./topic');
 
-var newsSchema = Schema({
+var newsSchema = new Schema({
     title: {
         type: String,
         required: true,
@@ -14,8 +16,19 @@ var newsSchema = Schema({
         required: true,
         minlength: 5,
         trim: true
-    }
-})
+    },
+    relatedTopics: [{
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: 'Topic'
+    }] 
+});
+
+// newsSchemaSchema.pre('save', function(next) {
+//     var news = this;
+
+    
+// });
 
 var News = mongoose.model('News', newsSchema);
 
