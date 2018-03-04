@@ -9,14 +9,14 @@ var topicsSchema = new Schema ({
         minlength: 1,
         trim: true,
         unique: true
-    }
+    },
+    _relatedNews: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'News'
+    }] 
 });
 
-topicsSchema.virtual('articles', {
-    ref: 'News', // The model to use
-    localField: '_id', // Find news where `localField`
-    foreignField: 'relatedNews', // is equal to `foreignField`
-});
+
 
 var Topic = mongoose.model('Topic', topicsSchema);
 

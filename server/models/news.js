@@ -17,18 +17,12 @@ var newsSchema = new Schema({
         minlength: 5,
         trim: true
     },
-    relatedTopics: [{
+    _relatedTopics: [{
         type: mongoose.Schema.Types.ObjectId,
         required: true,
         ref: 'Topic'
     }] 
 });
-
-// newsSchemaSchema.pre('save', function(next) {
-//     var news = this;
-
-    
-// });
 
 var News = mongoose.model('News', newsSchema);
 
